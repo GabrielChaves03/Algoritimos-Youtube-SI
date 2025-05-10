@@ -1,6 +1,6 @@
 # Algoritimos do Youtube (Sitemas Inteligentes) ![image](https://github.com/user-attachments/assets/a8415e71-32ca-4de1-a20a-0c7716f1b8ec)
 
-# Base de Dados de Interesse:
+# Base de Dados de Interesse (Já tratada):
 
 https://docs.google.com/spreadsheets/d/16Zv0m_tA7mz_XojojnyDaInxJUjmfdLM6pkr920w99s/edit?usp=sharing
 
