@@ -16,3 +16,5 @@ Dados:
 "Contagem de visualizações";
 "Contagem de curtidas";
 "Contagem de comentários"
+
+------------------
