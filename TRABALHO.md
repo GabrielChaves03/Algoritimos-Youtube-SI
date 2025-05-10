@@ -16,6 +16,10 @@ base de dados, descreve como isso foi feito. Indique o que significa cada linha 
 
 # Análise Exploratória de Dados:
 * Apresentar fatos a respeitos dos dados obtidos, ulizando métodos estatísticos simples, como média, mediana, moda, desvio padrão, percentil.
+* CTR médio por tipo de título
+* Watch time médio por tipo
+* Distribuição e dispersão das métricas
+* Comparações antes/depois de introdução de IA
 
 # Visualização de Dados
 * Contrução e apresentação de gráficos, tabelas sumarizadas, infográficos ou outros elementos visuais que descrevam os dados. Utilizar ferramentas de visualização de dados (ex. Excel, PowerBI, GapMinder, Tableau)
@@ -24,6 +28,10 @@ base de dados, descreve como isso foi feito. Indique o que significa cada linha 
 # Análise Crítica e Conclusão:
 * Interpretação dos dados estatísticos e dos gráficos apresentados à luz dos problemas e hipóteses que foram definidos.
 * Espera-se tirar conclusões a partir da análise dos resultados.
+* Interpretação das estatísticas
+* Insights relevantes
+* Limitações
+* Hipóteses confirmadas/refutadas
 
 # Requisitos do trabalho
 * Toda análise estatística dos dados deve estar vinculada a uma pergunta elaborada na fase de "definição do problema".
