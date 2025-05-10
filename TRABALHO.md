@@ -5,7 +5,7 @@
 https://docs.google.com/spreadsheets/d/16Zv0m_tA7mz_XojojnyDaInxJUjmfdLM6pkr920w99s/edit?usp=sharing
 
 # Descrição dos Dados (Dicionário de Dados): 
-* Deve apresentar o nome do campo/atributo, o po do dado e uma
+* Deve apresentar o nome do campo/atributo, o tipo de dado e uma
 breve descrição. Complemente com uma a apresentação de um fragmento/amostra de dos dados (algumas poucas linhas). Caso tenha feito limpeza e redução da
 base de dados, descreve como isso foi feito. Indique o que significa cada linha e cada coluna selecionadas para o trabalho.
 
