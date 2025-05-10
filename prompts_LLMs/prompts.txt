@@ -1,0 +1,18 @@
+Tendo como base essa instrução:
+
+A definição do problema deve ser feita na forma de uma pergunta orientada a dados. Deixe claro no seu objetivo qual dado você pretende utilizar para responder a pergunta. Por exemplo, ao invés de definir uma pergunta como "Analisar o impacto da pandemia no setor hoteleiro", tente definir uma pergunta como "Identificar como a taxa de ocupação do setor hoteleiro foi impactada ao longo dos dias de quarentena". Perceba que na segunda pergunta você deixa claro que irá utilizar um atributo que descreve a ocupação do setor hoteleiro e que este campo precisa estar representado conjuntamente ao atributo tempo.
+
+Quero que você me ajude a redefinir a pergunta orientada a dados abaixo de forma que esteja claro nela algum dos dados (também fixados abaixo) que pretendemos utilizar para responder a pergunta.
+
+Pergunta:
+
+Qual a métrica mais importante para determinação de viralização de um vídeo no YouTube.
+
+Dados:
+
+"Titulo"; (Título do vídeo)
+"Publicado em"; (Data de publicação)
+"Duração"; (Duração do vídeo)
+"Contagem de visualizações";
+"Contagem de curtidas";
+"Contagem de comentários"
