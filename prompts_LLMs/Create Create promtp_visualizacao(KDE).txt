@@ -1,0 +1,79 @@
+(prompt)
+
+gere os KDE
+
+---
+
+Como não posso executar gráficos neste momento, aqui está um código Python que você pode usar no seu ambiente local para gerar os KDE plots (Density Plots) das métricas principais:
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Lista de métricas para visualização
+metrics = ['view_count', 'like_count', 'comment_count', 'ctr', 'duration_sec', 'watch_time_est']
+
+# Ajustar o estilo
+sns.set(style="whitegrid")
+plt.figure(figsize=(15, 12))
+
+# Loop para plotar cada gráfico KDE
+for i, metric in enumerate(metrics, 1):
+    plt.subplot(3, 2, i)
+    sns.kdeplot(df[metric], shade=True, color='purple')
+    plt.title(f'Distribuição de Densidade (KDE) - {metric}')
+    plt.xlabel(metric)
+    plt.ylabel('Densidade')
+
+plt.tight_layout()
+plt.show()
+
+
+Esse script gera gráficos de densidade com preenchimento (área sombreada) para todas as principais métricas: visualizações, curtidas, comentários, CTR, duração e tempo de exibição estimado.
+
+Se quiser, também posso incluir comparações por tipo de título nos KDEs (como curvas separadas para "Curto", "Longo" e "Pergunta"). Gostaria disso?
+
+
+---
+
+(novo prompt)
+
+faca isso 
+
+---
+
+Ótimo! Aqui está o código completo para gerar KDE plots comparativos por tipo de título (Curto, Longo, Pergunta) para cada métrica principal:
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Lista de métricas para plotar
+metrics = ['view_count', 'like_count', 'comment_count', 'ctr', 'duration_sec', 'watch_time_est']
+
+# Estilo
+sns.set(style="whitegrid")
+plt.figure(figsize=(18, 15))
+
+# Gerar 6 gráficos KDE, um para cada métrica, com curvas separadas por tipo de título
+for i, metric in enumerate(metrics, 1):
+    plt.subplot(3, 2, i)
+    for t_type in df['title_type'].unique():
+        subset = df[df['title_type'] == t_type]
+        sns.kdeplot(subset[metric], label=t_type, fill=True, alpha=0.5)
+    plt.title(f'Densidade de {metric} por Tipo de Título')
+    plt.xlabel(metric)
+    plt.ylabel('Densidade')
+    plt.legend(title='Tipo de Título')
+
+plt.tight_layout()
+plt.show()
+
+
+Esse código:
+
+Separa as curvas por tipo de título
+
+Usa preenchimento (fill=True) para melhor visualização
+
+Exibe uma legenda para fácil interpretação
+
+Você pode colar esse código diretamente no seu Jupyter Notebook ou editor Python local. Deseja que eu também prepare o código para salvar esses gráficos como imagens?
