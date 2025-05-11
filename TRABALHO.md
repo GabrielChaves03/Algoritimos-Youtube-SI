@@ -16,8 +16,11 @@ https://docs.google.com/document/d/1kBvWXks7krLkZooX5P2y9spEhOZdIIy8g7cRjguBRGI/
 Em formato de pdf: file:///C:/Users/Enzo/Desktop/Relat%C3%B3rio%20Estat%C3%ADstico%20Geral.pdf
 
 # Visualização de Dados
-* Contrução e apresentação de gráficos, tabelas sumarizadas, infográficos ou outros elementos visuais que descrevam os dados. Utilizar ferramentas de visualização de dados (ex. Excel, PowerBI, GapMinder, Tableau)
-* (Pelo menos três gráficos/resultados visuais)
+arquivo pdf com relatorio: file:///C:/Users/Enzo/Downloads/mini_relatorio_videos_viralizacao.pdf
+
+arquivo em jupiter do codigo: na pasta arquivos de codigo 
+
+
 
 # Análise Crítica e Conclusão:
 * Interpretação dos dados estatísticos e dos gráficos apresentados à luz dos problemas e hipóteses que foram definidos.
