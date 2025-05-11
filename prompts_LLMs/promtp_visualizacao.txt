@@ -1,0 +1,145 @@
+(foram enviados 3 arquivos base dados, dicionario de dados e o relatorio estatistico)
+
+os relatorios foram obtidos a partir desse codigo import pandas as pd
+import numpy as np
+from datetime import datetime
+
+# 1. Carregar dados
+df = pd.read_excel('Vídeos Mais Assistidos do Youtube (2024).xlsx')
+
+# 2. Limpeza e conversões
+# Converter published_at para datetime
+df['published_at'] = pd.to_datetime(df['published_at'], utc=True)
+
+# Converter duration (ISO 8601) para segundos
+def iso_to_seconds(iso_str):
+    # Ex: 'PT1M1S', 'PT25S', 'PT2H3M', etc.
+    import re
+    nums = {'H': 3600, 'M': 60, 'S': 1}
+    total = 0
+    for amount, unit in re.findall(r"(\d+)([HMS])", iso_str):
+        total += int(amount) * nums[unit]
+    return total
+
+df['duration_sec'] = df['duration'].apply(iso_to_seconds)
+
+# Definir métricas derivadas
+# CTR aproximado: like_count / view_count
+# Watch time proxy: duration_sec * view_count (tempo total assistido estimado)
+df['ctr'] = df['like_count'] / df['view_count']
+df['watch_time_est'] = df['duration_sec'] * df['view_count']
+
+# 3. Estatísticas gerais
+def summary_stats(series):
+    return {
+        'mean': series.mean(),
+        'median': series.median(),
+        'mode': series.mode().iloc[0] if not series.mode().empty else np.nan,
+        'std': series.std(),
+        '25%': series.quantile(0.25),
+        '75%': series.quantile(0.75)
+    }
+
+metrics = ['view_count', 'like_count', 'comment_count', 'duration_sec', 'ctr', 'watch_time_est']
+summary = {m: summary_stats(df[m]) for m in metrics}
+print("\nResumo Estatístico Geral:")
+for m, stats in summary.items():
+    print(f"{m}: {stats}")
+
+# 4. CTR médio por tipo de título
+# Exemplo de categorização: presença de '?' no título
+
+def categorize_title(t):
+    if '?' in t:
+        return 'Pergunta'
+    elif len(t) > 50:
+        return 'Longo'
+    else:
+        return 'Curto'
+
+
+df['title_type'] = df['title'].apply(categorize_title)
+ctr_by_type = df.groupby('title_type')['ctr'].mean()
+print("\nCTR médio por tipo de título:")
+print(ctr_by_type)
+
+# 5. Watch time médio por tipo de título
+wt_by_type = df.groupby('title_type')['watch_time_est'].mean()
+print("\nWatch time estimado médio por tipo de título (segundos * views):")
+print(wt_by_type)
+
+# 6. Distribuição e dispersão (desvio padrão e quartis)
+print("\nDistribuição e Dispersão das Métricas:")
+for m in metrics:
+    print(f"- {m}: Média={df[m].mean():.2f}, Desvio Padrão={df[m].std():.2f}, 25%={df[m].quantile(0.25):.2f}, 75%={df[m].quantile(0.75):.2f}")
+
+# 7. Comparação antes/depois da introdução de IA (ex: 30/11/2022)
+ai_launch = pd.to_datetime('2022-11-30T00:00:00Z')
+before = df[df['published_at'] < ai_launch]
+after = df[df['published_at'] >= ai_launch]
+
+print("\nComparação antes/depois da introdução de IA (30/11/2022):")
+for m in ['view_count', 'like_count', 'comment_count', 'ctr', 'watch_time_est']:
+    print(f"{m}: Antes Média={before[m].mean():.2f}, Depois Média={after[m].mean():.2f}")
+
+quais seriam possiveis graficos para ser produzidos? nao realize apenas me informe 
+
+---
+Resposta da IA:
+
+Ótima pergunta! Abaixo está uma lista de gráficos que você pode gerar a partir dos seus dados, organizados por tipo de análise (com matplotlib, seaborn, plotly, bokeh, etc.).
+
+📊 Estatísticas Descritivas e Distribuições
+Histograma: distribuição de view_count, like_count, ctr, watch_time_est, etc.
+
+Boxplot: dispersão com outliers por métrica (ideal para comparações entre tipos de título).
+
+Violin plot: similar ao boxplot, mas mostra densidade da distribuição.
+
+Density plot (KDE): curva de densidade para métricas contínuas.
+
+📈 Relações Entre Métricas
+Scatter plot (2D):
+
+view_count vs like_count
+
+ctr vs watch_time_est
+
+duration vs view_count
+
+Scatter plot (3D):
+
+view_count, like_count, duration_sec
+
+Pode ser feito com plotly ou matplotlib 3D
+
+📅 Análise Temporal
+Time series (linha):
+
+Evolução mensal de view_count ou like_count ao longo do tempo.
+
+Barra agrupada:
+
+Comparação de médias antes e depois da IA.
+
+📌 Análise Categórica
+Barplot:
+
+CTR médio por tipo de título (title_type)
+
+Média de watch_time_est por tipo de título
+
+Treemap (interativo): proporção de visualizações por categoria ou título
+
+🔄 Comparações e Correlações
+Heatmap de correlação: entre todas as métricas numéricas.
+
+Pairplot (matriz de dispersão): relações cruzadas entre todas as variáveis contínuas.
+
+🧠 Análises Avançadas (opcional)
+Word cloud: termos mais frequentes nos títulos virais.
+
+3D PCA ou t-SNE: projeção de alta dimensionalidade em 3D para padrões visuais.
+
+---
+
