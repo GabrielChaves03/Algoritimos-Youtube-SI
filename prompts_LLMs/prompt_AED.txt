@@ -1,0 +1,7 @@
+(foi enviado dois arquivos a base de daos e o dicionario de dados)
+
+esse e o dicionário de dados da base de dados lhe informada, com essa pergunta orientada a dados "Entre as métricas de contagem de visualizações, curtidas, comentários, duração e data de publicação, qual apresenta a maior correlação com a viralização de vídeos no YouTube?", quero realizar uma AED em python que mostre Apresentar fatos a respeitos dos dados obtidos, ulizando métodos estatísticos simples, como média, mediana, moda, desvio padrão, percentil.
+CTR médio por tipo de título
+Watch time médio por tipo
+Distribuição e dispersão das métricas
+Comparações antes/depois de introdução de IA
