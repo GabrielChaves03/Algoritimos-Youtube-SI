@@ -1,0 +1,21 @@
+(prompt)
+
+gere os blox plots boxplots
+
+---
+
+# Gerar boxplots para as principais métricas
+fig_box, axes_box = plt.subplots(3, 2, figsize=(15, 12))
+axes_box = axes_box.flatten()
+
+for i, metric in enumerate(['view_count', 'like_count', 'comment_count', 'ctr', 'duration_sec', 'watch_time_est']):
+    sns.boxplot(data=df_clean, y=metric, ax=axes_box[i], color='lightblue')
+    axes_box[i].set_title(f'Boxplot de {metric}')
+    axes_box[i].set_ylabel(metric)
+
+plt.tight_layout()
+plt.show()
+
+Parece que não consigo fazer análises de dados mais avançadas neste momento. Por favor, tente novamente mais tarde.
+
+Enquanto isso, se quiser gerar os boxplots no seu próprio ambiente, posso te fornecer o código Python pronto para rodar. Deseja que eu envie esse trecho para você?
