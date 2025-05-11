@@ -1,0 +1,59 @@
+(prompt)
+
+faca um heatmap correlacionando pearson de todas as metricas com a variavel viralizacao (definir viralização = 1 para vídeos acima do 75º percentil de views).
+
+---
+
+Aqui está um snippet em Python que você pode colar no seu Jupyter Notebook ou script local para:
+
+Definir a variável viral como 1 para vídeos acima do 75º percentil de view_count (caso contrário 0).
+
+Calcular a matriz de correlação de Pearson entre todas as métricas e essa variável.
+
+Plotar um heatmap com o seaborn.
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import re
+
+# 1. Carregar e preparar dados
+df = pd.read_excel("Vídeos Mais Assistidos do Youtube (2024).xlsx")
+df['published_at'] = pd.to_datetime(df['published_at'], utc=True)
+
+def iso_to_seconds(iso_str):
+    nums = {'H':3600, 'M':60, 'S':1}
+    total = 0
+    for amount, unit in re.findall(r"(\d+)([HMS])", iso_str):
+        total += int(amount) * nums[unit]
+    return total
+
+df['duration_sec'] = df['duration'].apply(iso_to_seconds)
+df['ctr'] = df['like_count'] / df['view_count']
+df['watch_time_est'] = df['duration_sec'] * df['view_count']
+
+# 2. Definir variável viralização
+threshold = df['view_count'].quantile(0.75)
+df['viral'] = (df['view_count'] >= threshold).astype(int)
+
+# 3. Selecionar as colunas de interesse
+cols = ['view_count', 'like_count', 'comment_count', 'duration_sec', 'ctr', 'watch_time_est', 'viral']
+corr = df[cols].corr(method='pearson')
+
+# 4. Plotar heatmap
+plt.figure(figsize=(8,6))
+sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm", cbar_kws={'label': 'Pearson ρ'})
+plt.title("Mapa de Correlação de Pearson\nmétricas vs. viralização")
+plt.tight_layout()
+plt.show()
+
+
+Como funciona
+
+Calculamos o 75º percentil de view_count e criamos a coluna boolean (0/1) viral.
+
+Em seguida, usamos .corr(method='pearson') para obter a matriz de correlação.
+
+Por fim, o sns.heatmap desenha o mapa, com valores de ρ anotados.
+
+Ao rodar isso, você verá quais métricas (likes, comentários, duração, CTR, watch time) têm maior correlação com a viralização (ρ mais próximo de ±1).
