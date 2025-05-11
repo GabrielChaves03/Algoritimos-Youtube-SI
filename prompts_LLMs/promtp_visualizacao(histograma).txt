@@ -1,0 +1,146 @@
+gere graficos Estatísticos Descritivos e Distribuições
+Histograma: distribuição de view_count, like_count, ctr, watch_time_est, etc.
+
+---
+
+Reposta da IA:
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+from mpl_toolkits.mplot3d import Axes3D
+from datetime import datetime
+
+# Carregar os dados
+df = pd.read_excel("/mnt/data/Vídeos Mais Assistidos do Youtube (2024).xlsx")
+
+# Conversões e criação de colunas
+df['published_at'] = pd.to_datetime(df['published_at'], utc=True)
+
+# Converter duração ISO 8601 para segundos
+import re
+def iso_to_seconds(iso_str):
+    nums = {'H': 3600, 'M': 60, 'S': 1}
+    total = 0
+    for amount, unit in re.findall(r"(\d+)([HMS])", iso_str):
+        total += int(amount) * nums[unit]
+    return total
+df['duration_sec'] = df['duration'].apply(iso_to_seconds)
+
+# Métricas derivadas
+df['ctr'] = df['like_count'] / df['view_count']
+df['watch_time_est'] = df['duration_sec'] * df['view_count']
+
+# Categorização dos títulos
+def categorize_title(t):
+    if '?' in t:
+        return 'Pergunta'
+    elif len(t) > 50:
+        return 'Longo'
+    else:
+        return 'Curto'
+df['title_type'] = df['title'].apply(categorize_title)
+
+# Criar amostras e preparar dados para gráficos
+metrics = ['view_count', 'like_count', 'comment_count', 'duration_sec', 'ctr', 'watch_time_est']
+df_clean = df.dropna(subset=metrics)
+
+df_clean.shape, df_clean.columns
+
+
+# Configurações de estilo
+sns.set(style="whitegrid")
+plt.rcParams["figure.figsize"] = (10, 6)
+
+# Histograma para métricas principais
+fig_hist, axes = plt.subplots(3, 2, figsize=(15, 12))
+axes = axes.flatten()
+for i, metric in enumerate(['view_count', 'like_count', 'comment_count', 'ctr', 'duration_sec', 'watch_time_est']):
+    sns.histplot(df_clean[metric], kde=True, ax=axes[i], bins=30, color='skyblue')
+    axes[i].set_title(f'Histograma de {metric}')
+    axes[i].set_xlabel(metric)
+    axes[i].set_ylabel('Frequência')
+plt.tight_layout()
+plt.show()
+
+Aqui estão os histogramas das principais métricas do conjunto de dados. Eles mostram a distribuição de:
+
+Visualizações (view_count)
+
+Curtidas (like_count)
+
+Comentários (comment_count)
+
+Taxa de cliques (ctr)
+
+Duração dos vídeos em segundos (duration_sec)
+
+Tempo total estimado assistido (watch_time_est)
+
+Agora, vou gerar os boxplots e outros gráficos descritivos para continuar a análise. Deseja que eu priorize algum tipo de gráfico em seguida (boxplot, violin plot, KDE, ou outro)
+
+---
+(novo prompt)
+
+ajuste estes graficos para  reduzir a variaveis x em todos eles 
+
+---
+resposta da IA:
+# Ajustar os histogramas com eixos x limitados para melhor visualização
+# Limites definidos com base nos quartis superiores para evitar distorções causadas por outliers extremos
+
+# Limites personalizados (baseado nos 75% ou valores típicos de dispersão)
+x_limits = {
+    'view_count': (0, 3_000_000),
+    'like_count': (0, 200_000),
+    'comment_count': (0, 3_000),
+    'ctr': (0, 0.15),
+    'duration_sec': (0, 1000),
+    'watch_time_est': (0, 4e8)
+}
+
+# Plot com limites ajustados
+fig_hist_adj, axes_adj = plt.subplots(3, 2, figsize=(15, 12))
+axes_adj = axes_adj.flatten()
+for i, metric in enumerate(['view_count', 'like_count', 'comment_count', 'ctr', 'duration_sec', 'watch_time_est']):
+    sns.histplot(df_clean[metric], kde=True, ax=axes_adj[i], bins=30, color='mediumseagreen')
+    axes_adj[i].set_title(f'Histograma de {metric} (limitado)')
+    axes_adj[i].set_xlabel(metric)
+    axes_adj[i].set_ylabel('Frequência')
+    axes_adj[i].set_xlim(x_limits[metric])
+plt.tight_layout()
+plt.show()
+
+Os histogramas foram atualizados com limites ajustados no eixo X para melhorar a legibilidade e reduzir o impacto de outliers. Agora é possível visualizar melhor as distribuições centrais das métricas.
+
+Em seguida, posso gerar os boxplots, violin plots ou KDEs. Qual deles você prefere ver agora?
+
+---
+(novo prompt)
+
+o historiograma do view  count, durations sec, watch time est , like count  aumente eles um pouco no eixo x de aumentando mais no duration e watch time est
+
+# Atualizar os limites de eixo x para alguns histogramas específicos
+x_limits_updated = {
+    'view_count': (0, 4_000_000),
+    'like_count': (0, 300_000),
+    'comment_count': (0, 3_000),  # permanece o mesmo
+    'ctr': (0, 0.15),             # permanece o mesmo
+    'duration_sec': (0, 2000),
+    'watch_time_est': (0, 8e8)
+}
+
+# Replotar os histogramas com os novos limites
+fig_hist_updated, axes_updated = plt.subplots(3, 2, figsize=(15, 12))
+axes_updated = axes_updated.flatten()
+for i, metric in enumerate(['view_count', 'like_count', 'comment_count', 'ctr', 'duration_sec', 'watch_time_est']):
+    sns.histplot(df_clean[metric], kde=True, ax=axes_updated[i], bins=30, color='salmon')
+    axes_updated[i].set_title(f'Histograma de {metric} (ajustado)')
+    axes_updated[i].set_xlabel(metric)
+    axes_updated[i].set_ylabel('Frequência')
+    axes_updated[i].set_xlim(x_limits_updated[metric])
+plt.tight_layout()
+plt.show()
+
