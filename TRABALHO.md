@@ -13,11 +13,7 @@ https://docs.google.com/document/d/1kBvWXks7krLkZooX5P2y9spEhOZdIIy8g7cRjguBRGI/
 **Entre as métricas de contagem de visualizações, curtidas, comentários, duração e data de publicação, qual apresenta a maior correlação com a viralização de vídeos no YouTube?**
 
 # Análise Exploratória de Dados:
-* Apresentar fatos a respeitos dos dados obtidos, ulizando métodos estatísticos simples, como média, mediana, moda, desvio padrão, percentil.
-* CTR médio por tipo de título
-* Watch time médio por tipo
-* Distribuição e dispersão das métricas
-* Comparações antes/depois de introdução de IA
+Em formato de pdf: file:///C:/Users/Enzo/Desktop/Relat%C3%B3rio%20Estat%C3%ADstico%20Geral.pdf
 
 # Visualização de Dados
 * Contrução e apresentação de gráficos, tabelas sumarizadas, infográficos ou outros elementos visuais que descrevam os dados. Utilizar ferramentas de visualização de dados (ex. Excel, PowerBI, GapMinder, Tableau)
