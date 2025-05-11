@@ -1,0 +1,65 @@
+(prompt)
+
+Boxplot de “viral” vs “não viral” para cada métrica
+
+O que faz: segmenta sua base em “viral” (top 25% de views) e “não viral” e plota boxplot de cada métrica lado a lado.
+
+Por que é útil: compara diretamente a distribuição de likes, comentários, duração etc. entre vídeos que viralizaram e os que não.
+
+---
+
+Segue um exemplo de como você pode gerar, no seu ambiente Python, os boxplots comparando vídeos “viral” vs “não viral” para as principais métricas:
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import re
+
+# 1. Carregar dados e preparar colunas
+df = pd.read_excel("Vídeos Mais Assistidos do Youtube (2024).xlsx")
+df['published_at'] = pd.to_datetime(df['published_at'], utc=True)
+
+# Converter duração ISO 8601 em segundos
+def iso_to_seconds(iso_str):
+    nums = {'H':3600, 'M':60, 'S':1}
+    total = 0
+    for amount, unit in re.findall(r"(\d+)([HMS])", iso_str):
+        total += int(amount) * nums[unit]
+    return total
+
+df['duration_sec'] = df['duration'].apply(iso_to_seconds)
+df['ctr'] = df['like_count'] / df['view_count']
+df['watch_time_est'] = df['duration_sec'] * df['view_count']
+
+# 2. Definir “viral” (top 25% de views) e “não viral”
+threshold = df['view_count'].quantile(0.75)
+df['viral'] = df['view_count'].ge(threshold).map({True: 'Viral', False: 'Não Viral'})
+
+# 3. Métricas a comparar
+metrics = ['view_count', 'like_count', 'comment_count', 'duration_sec', 'ctr', 'watch_time_est']
+
+# 4. Plotar boxplots lado a lado
+sns.set(style="whitegrid")
+fig, axes = plt.subplots(3, 2, figsize=(16, 14))
+axes = axes.flatten()
+
+for ax, metric in zip(axes, metrics):
+    sns.boxplot(x='viral', y=metric, data=df, ax=ax,
+                palette={'Viral': 'darkviolet', 'Não Viral': 'lightgray'})
+    ax.set_title(f'{metric} — Viral vs Não Viral')
+    ax.set_xlabel('')
+    ax.set_ylabel(metric)
+
+plt.tight_layout()
+plt.show()
+
+
+O que o código faz:
+
+Carrega e limpa os dados, criando as colunas derivadas (duration_sec, ctr, watch_time_est).
+
+Define a coluna viral como “Viral” para vídeos no quartil superior de view_count e “Não Viral” para os demais.
+
+Para cada métrica, desenha um boxplot comparando as duas categorias, usando roxo escuro para “Viral” e cinza claro para “Não Viral”.
+
+Basta colar esse trecho no seu Jupyter Notebook ou script e executar para visualizar como as distribuições de cada métrica diferem entre vídeos virais e não virais.
