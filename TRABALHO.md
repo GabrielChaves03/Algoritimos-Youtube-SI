@@ -20,12 +20,18 @@ arquivo pdf com relatorio: file:///C:/Users/Enzo/Downloads/mini_relatorio_videos
 
 arquivo em jupiter do codigo: na pasta arquivos de codigo 
 
-[Análise Critica e Conclusão.pdf](https://github.com/user-attachments/files/20162282/Analise.Critica.e.Conclusao.pdf)
-
 
 # Análise Crítica e Conclusão:
 Arquivo pdf com a análise crítica e conclusão
 
+[Análise Critica e Conclusão.pdf](https://github.com/user-attachments/files/20162374/Analise.Critica.e.Conclusao.pdf)
+
+
+
+# Dicionário de Termos e Siglas: 
+
+
+[Dicionário.pdf](https://github.com/user-attachments/files/20162392/Dicionario.pdf)
 
 
 
