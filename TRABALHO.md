@@ -13,7 +13,10 @@ https://docs.google.com/document/d/1kBvWXks7krLkZooX5P2y9spEhOZdIIy8g7cRjguBRGI/
 **Entre as métricas de contagem de visualizações, curtidas, comentários, duração e data de publicação, qual apresenta a maior correlação com a viralização de vídeos no YouTube?**
 
 # Análise Exploratória de Dados:
-Em formato de pdf: file:///C:/Users/Enzo/Desktop/Relat%C3%B3rio%20Estat%C3%ADstico%20Geral.pdf
+
+Em formato de pdf: file:
+
+///C:/Users/Enzo/Desktop/Relat%C3%B3rio%20Estat%C3%ADstico%20Geral.pdf
 
 # Visualização de Dados
 arquivo pdf com relatorio: file:///C:/Users/Enzo/Downloads/mini_relatorio_videos_viralizacao.pdf
