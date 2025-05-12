@@ -23,12 +23,10 @@ arquivo em jupiter do codigo: na pasta arquivos de codigo
 
 
 # Análise Crítica e Conclusão:
-* Interpretação dos dados estatísticos e dos gráficos apresentados à luz dos problemas e hipóteses que foram definidos.
-* Espera-se tirar conclusões a partir da análise dos resultados.
-* Interpretação das estatísticas
-* Insights relevantes
-* Limitações
-* Hipóteses confirmadas/refutadas
+Arquivo pdf com a análise crítica e conclusão do 
+
+[Análise Critica e Conclusão (3).pdf](https://github.com/user-attachments/files/20162226/Analise.Critica.e.Conclusao.3.pdf)
+
 
 # Requisitos do trabalho
 * Toda análise estatística dos dados deve estar vinculada a uma pergunta elaborada na fase de "definição do problema".
