@@ -23,9 +23,9 @@ arquivo em jupiter do codigo: na pasta arquivos de codigo
 
 
 # Análise Crítica e Conclusão:
-Arquivo pdf com a análise crítica e conclusão do 
+Arquivo pdf com a análise crítica e conclusão
 
-[Análise Critica e Conclusão (3).pdf](https://github.com/user-attachments/files/20162226/Analise.Critica.e.Conclusao.3.pdf)
+[Análise Critica e Conclusão (3).pdf](https://github.com/user-attachments/files/20162226/Analise.Critica.e.Conclusao.pdf)
 
 
 # Requisitos do trabalho
